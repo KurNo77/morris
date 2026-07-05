@@ -294,12 +294,10 @@ function renderIdentity() {
 
 function renderBalances() {
   const balance = Number(state.account?.balance || 0);
-  const savings = Number(state.account?.savings_balance || 0);
   const deposits = sumTransactions("deposit");
   const withdrawals = sumTransactions("withdrawal");
   $("#currentBalance").textContent = money(balance);
   $("#availableBalance").textContent = money(balance);
-  $("#savingsBalance").textContent = money(savings);
   $("#totalDeposits").textContent = money(deposits);
   $("#adminDeposits").textContent = money(isAdmin() ? sumAdminTransactions("deposit") : deposits);
   $("#adminWithdrawals").textContent = money(isAdmin() ? sumAdminTransactions("withdrawal") : withdrawals);
