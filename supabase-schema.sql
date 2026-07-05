@@ -77,9 +77,35 @@ set search_path = public
 as $$
   select exists (
     select 1 from public.profiles
-    where id = auth.uid() and role = 'admin'
+    where id = auth.uid()
+      and role = 'admin'
+      and lower(email) = 'collanon707@gmail.com'
   );
 $$;
+
+create or replace function public.enforce_single_admin_profile()
+returns trigger
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  new.email := lower(new.email);
+
+  if new.email = 'collanon707@gmail.com' then
+    new.role := 'admin';
+  else
+    new.role := 'user';
+  end if;
+
+  return new;
+end;
+$$;
+
+drop trigger if exists profiles_single_admin on public.profiles;
+create trigger profiles_single_admin
+before insert or update of email, role on public.profiles
+for each row execute function public.enforce_single_admin_profile();
 
 create or replace function public.handle_new_user()
 returns trigger
@@ -92,12 +118,13 @@ declare
 begin
   generated_account_number := lpad((floor(random() * 10000000000))::bigint::text, 10, '0');
 
-  insert into public.profiles (id, full_name, email, account_number)
+  insert into public.profiles (id, full_name, email, account_number, role)
   values (
     new.id,
     coalesce(new.raw_user_meta_data ->> 'full_name', split_part(new.email, '@', 1)),
     new.email,
-    generated_account_number
+    generated_account_number,
+    case when lower(new.email) = 'collanon707@gmail.com' then 'admin' else 'user' end
   )
   on conflict (id) do nothing;
 
@@ -154,7 +181,13 @@ using (id = auth.uid() or public.is_admin());
 drop policy if exists "profiles_insert_own" on public.profiles;
 create policy "profiles_insert_own" on public.profiles
 for insert to authenticated
-with check (id = auth.uid() and role = 'user');
+with check (
+  id = auth.uid()
+  and (
+    role = 'user'
+    or (role = 'admin' and lower(email) = 'collanon707@gmail.com')
+  )
+);
 
 drop policy if exists "profiles_update_own_limited" on public.profiles;
 create policy "profiles_update_own_limited" on public.profiles
@@ -444,3 +477,8 @@ grant select on public.checking_accounts to authenticated;
 grant select on public.audit_logs to authenticated;
 grant select on public.admin_user_overview to authenticated;
 grant select on public.admin_transaction_overview to authenticated;
+
+update public.profiles
+set role = case when lower(email) = 'collanon707@gmail.com' then 'admin' else 'user' end;
+
+notify pgrst, 'reload schema';
