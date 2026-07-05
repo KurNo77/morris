@@ -484,7 +484,7 @@
       <form id="adminUserForm" method="dialog" class="modal-body">
         <div class="panel-header">
           <h3 id="adminUserDialogTitle">Edit User</h3>
-          <button class="icon-button" value="cancel" type="submit" aria-label="Close">
+          <button class="icon-button" data-close-dialog="adminUserDialog" type="button" aria-label="Close">
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
@@ -509,7 +509,7 @@
           <label class="span-2">Address<textarea id="adminAddress" rows="3"></textarea></label>
         </div>
         <div class="modal-actions">
-          <button class="button button-light" value="cancel" type="submit">Cancel</button>
+          <button class="button button-light" data-close-dialog="adminUserDialog" type="button">Cancel</button>
           <button id="saveAdminUser" class="button" value="default" type="button">Save User</button>
         </div>
       </form>
@@ -519,7 +519,7 @@
       <form id="balanceForm" method="dialog" class="modal-body">
         <div class="panel-header">
           <h3>Balance Management</h3>
-          <button class="icon-button" value="cancel" type="submit" aria-label="Close">
+          <button class="icon-button" data-close-dialog="balanceDialog" type="button" aria-label="Close">
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
@@ -538,7 +538,7 @@
           <label class="span-2">Description<textarea id="balanceDescription" rows="3" required></textarea></label>
         </div>
         <div class="modal-actions">
-          <button class="button button-light" value="cancel" type="submit">Cancel</button>
+          <button class="button button-light" data-close-dialog="balanceDialog" type="button">Cancel</button>
           <button id="saveBalanceAction" class="button" value="default" type="button">Apply</button>
         </div>
       </form>
