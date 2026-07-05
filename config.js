@@ -1,4 +1,4 @@
 window.SECURE_FINANCIAL_CONFIG = {
-  SUPABASE_URL: "https://your-project.supabase.co",
-  SUPABASE_ANON_KEY: "your-public-anon-key"
+  SUPABASE_URL: "https://ebmarcefrxxvymscddnh.supabase.co",
+  SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVibWFyY2Vmcnh4dnltc2NkZG5oIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODMyNTk3OTYsImV4cCI6MjA5ODgzNTc5Nn0.VDzfWdOrgjxE5YtrsLAmYq_EIlNtf5aSxfFUVygd7Qw"
 };
