@@ -4,6 +4,6 @@
   "private": true,
   "scripts": {
     "build": "node build.js",
-    "dev": "node server.js"
+    "dev": "node local-server.js"
   }
 }

@@ -9,7 +9,7 @@ Secure Financial is a responsive vanilla HTML/CSS/JavaScript digital banking das
 - `app.js` - Supabase auth, profile, user dashboard, admin dashboard, charts, exports, receipts, and realtime refresh.
 - `config.js` - local Supabase public project settings.
 - `config.example.js` - template for deployment setup.
-- `server.js` - optional local static server.
+- `local-server.js` - optional local static server.
 - `supabase-schema.sql` - tables, policies, views, triggers, storage bucket, and admin functions.
 - `vercel.json` - static deployment headers.
 
