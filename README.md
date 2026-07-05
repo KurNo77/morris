@@ -37,7 +37,17 @@ where email = 'admin@example.com';
 
 ## Deployment
 
-Deploy this folder to GitHub and import it into Vercel as a static project. Because this is a vanilla static app, there is no build command.
+Deploy this folder to GitHub and import it into Vercel as a static project.
+
+In Vercel project settings, add these environment variables:
+
+- `SUPABASE_URL`
+- `SUPABASE_ANON_KEY`
+
+Use this build setup:
+
+- Build Command: `npm run build`
+- Output Directory: `dist`
 
 For local testing:
 
