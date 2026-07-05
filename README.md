@@ -52,7 +52,7 @@ Use this build setup:
 For local testing:
 
 ```bash
-node server.js
+npm run dev
 ```
 
 Then open `http://localhost:5173`.
