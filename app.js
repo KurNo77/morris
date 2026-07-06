@@ -70,7 +70,6 @@ function bindEvents() {
   $("#saveBalanceAction").addEventListener("click", applyBalanceAction);
   $("#closeReceipt").addEventListener("click", () => $("#receiptDialog").close());
   $("#printReceipt").addEventListener("click", () => window.print());
-  $("#newUserButton").addEventListener("click", () => toast("Create users through Supabase Auth or a service-role Edge Function."));
   $$("[data-close-dialog]").forEach((button) => {
     button.addEventListener("click", () => $(`#${button.dataset.closeDialog}`)?.close());
   });
